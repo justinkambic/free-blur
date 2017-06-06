@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D038A2511EE36A5300D3514B /* SelectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038A2501EE36A5300D3514B /* SelectBlur.swift */; };
+		D038A2531EE59AC600D3514B /* CustomBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038A2521EE59AC600D3514B /* CustomBlur.swift */; };
 		D0ED3AD61EE06FCC0005B14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AD51EE06FCC0005B14C /* AppDelegate.swift */; };
 		D0ED3AD81EE06FCC0005B14C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AD71EE06FCC0005B14C /* FirstViewController.swift */; };
 		D0ED3ADA1EE06FCC0005B14C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AD91EE06FCC0005B14C /* SecondViewController.swift */; };
@@ -35,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D038A2501EE36A5300D3514B /* SelectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBlur.swift; sourceTree = "<group>"; };
+		D038A2521EE59AC600D3514B /* CustomBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlur.swift; sourceTree = "<group>"; };
 		D0ED3AD21EE06FCB0005B14C /* free-blur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "free-blur.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ED3AD51EE06FCC0005B14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0ED3AD71EE06FCC0005B14C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		D0ED3AD71EE06FCC0005B14C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		D0ED3AD91EE06FCC0005B14C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D0ED3ADC1EE06FCC0005B14C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0ED3ADE1EE06FCC0005B14C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				D0ED3ADE1EE06FCC0005B14C /* Assets.xcassets */,
 				D0ED3AE01EE06FCC0005B14C /* LaunchScreen.storyboard */,
 				D0ED3AE31EE06FCC0005B14C /* Info.plist */,
+				D038A2501EE36A5300D3514B /* SelectBlur.swift */,
+				D038A2521EE59AC600D3514B /* CustomBlur.swift */,
 			);
 			path = "free-blur";
 			sourceTree = "<group>";
@@ -262,7 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D038A2511EE36A5300D3514B /* SelectBlur.swift in Sources */,
 				D0ED3ADA1EE06FCC0005B14C /* SecondViewController.swift in Sources */,
+				D038A2531EE59AC600D3514B /* CustomBlur.swift in Sources */,
 				D0ED3AD61EE06FCC0005B14C /* AppDelegate.swift in Sources */,
 				D0ED3AD81EE06FCC0005B14C /* FirstViewController.swift in Sources */,
 			);
@@ -507,6 +515,7 @@
 				D0ED3AFE1EE06FCC0005B14C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0ED3AFF1EE06FCC0005B14C /* Build configuration list for PBXNativeTarget "free-blurTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +524,7 @@
 				D0ED3B011EE06FCC0005B14C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0ED3B021EE06FCC0005B14C /* Build configuration list for PBXNativeTarget "free-blurUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +533,7 @@
 				D0ED3B041EE06FCC0005B14C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
