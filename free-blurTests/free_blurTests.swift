@@ -3,7 +3,6 @@
 //  free-blurTests
 //
 //  Created by Justin Kambic on 6/1/17.
-//  Copyright © 2017 Justin Kambic. All rights reserved.
 //
 
 import XCTest
@@ -32,5 +31,4 @@ class free_blurTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
 }
