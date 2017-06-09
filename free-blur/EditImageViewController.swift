@@ -18,6 +18,8 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var btnSave: UIButton!
+    @IBOutlet weak var lblSaved: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,7 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         
         self.btnSave.isHidden = true
         self.btnSave.addTarget(self, action: #selector(EditImageViewController.btnSave_TouchUpInside(_:)), for: .touchUpInside)
+        self.lblSaved.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,7 +68,12 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
             present(errorAlert, animated: true)
         }
         else {
-            // TODO: add some UX that is triggered by success
+            self.lblSaved.isHidden = false
+            UIView.animate(withDuration: 0.65, animations: {
+                self.lblSaved.alpha = 0
+            }, completion: nil)
+            //self.lblSaved.isHidden = true
+            //self.lblSaved.alpha = 1.0*/
         }
     }
     
