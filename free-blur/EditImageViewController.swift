@@ -17,13 +17,17 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     var faceGrids = [BlurSelectionView]()
     
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var btnSave: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        image.delegate = self
-        imgView.isUserInteractionEnabled = true
-        imgView.frame = self.view.bounds
+        self.image.delegate = self
+        self.imgView.isUserInteractionEnabled = true
+        self.imgView.frame = self.view.bounds
+        
+        self.btnSave.isHidden = true
+        self.btnSave.addTarget(self, action: #selector(EditImageViewController.btnSave_TouchUpInside(_:)), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,8 +36,8 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     }
 
     @IBAction func btnClick(_ sender: Any) {
-        image.allowsEditing = true
-        image.sourceType = .photoLibrary
+        self.image.allowsEditing = true
+        self.image.sourceType = .photoLibrary
         self.present(image, animated: true, completion: nil)
     }
     
@@ -45,22 +49,38 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         
         let blurImageResult = blurImage(in: self.curImageSelection, targets: targets, numPasses: 2)
         self.blurredImage = blurImageResult!
-        imgView.image = self.blurredImage
+        self.imgView.image = self.blurredImage
         
         self.clearSubviews()
+        self.btnSave.isHidden = false
+    }
+    
+    @IBAction func btnSave_TouchUpInside(_ sender: Any) {
+        UIImageWriteToSavedPhotosAlbum(self.blurredImage, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let er = error {
+            let errorAlert = UIAlertController(title: "Error Saving Photo", message: er.localizedDescription, preferredStyle: .alert)
+            present(errorAlert, animated: true)
+        }
+        else {
+            // TODO: add some UX that is triggered by success
+        }
     }
     
     func clearSubviews() {
-        for view in imgView.subviews {
+        for view in self.imgView.subviews {
             view.removeFromSuperview()
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            self.btnSave.isHidden = true
             self.faceGrids.removeAll()
             self.curImageSelection = pickedImage
-            imgView.contentMode = .scaleAspectFit
+            self.imgView.contentMode = .scaleAspectFit
             
             self.clearSubviews()
             
@@ -98,11 +118,9 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
                 
                 let faceBox = BlurSelectionView(frame: faceViewBounds, ciFaceCoords: face.bounds.applying(transform))
                 
-                imgView.addSubview(faceBox)
+                self.imgView.addSubview(faceBox)
                 self.faceGrids.append(faceBox)
             }
         }
     }
 }
-
-
