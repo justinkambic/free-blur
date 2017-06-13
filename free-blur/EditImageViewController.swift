@@ -71,9 +71,10 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
             self.lblSaved.isHidden = false
             UIView.animate(withDuration: 0.65, animations: {
                 self.lblSaved.alpha = 0
-            }, completion: nil)
-            //self.lblSaved.isHidden = true
-            //self.lblSaved.alpha = 1.0*/
+            }, completion: { (finished: Bool) in
+                self.lblSaved.isHidden = true
+                self.lblSaved.alpha = 1.0
+            })
         }
     }
     
