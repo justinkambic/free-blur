@@ -12,6 +12,7 @@
 		D05F070D1EE9932B00203DFD /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F070C1EE9932B00203DFD /* Circle.swift */; };
 		D05F070F1EE9938E00203DFD /* GaussMat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F070E1EE9938E00203DFD /* GaussMat.swift */; };
 		D05F07111EE9940100203DFD /* RGBAPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F07101EE9940100203DFD /* RGBAPixel.swift */; };
+		D0A59CBC1EF08D7B00A37A1F /* SaveImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A59CBB1EF08D7B00A37A1F /* SaveImageViewController.swift */; };
 		D0ED3AD61EE06FCC0005B14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AD51EE06FCC0005B14C /* AppDelegate.swift */; };
 		D0ED3AD81EE06FCC0005B14C /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AD71EE06FCC0005B14C /* EditImageViewController.swift */; };
 		D0ED3ADA1EE06FCC0005B14C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AD91EE06FCC0005B14C /* SecondViewController.swift */; };
@@ -45,6 +46,7 @@
 		D05F070C1EE9932B00203DFD /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		D05F070E1EE9938E00203DFD /* GaussMat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaussMat.swift; sourceTree = "<group>"; };
 		D05F07101EE9940100203DFD /* RGBAPixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAPixel.swift; sourceTree = "<group>"; };
+		D0A59CBB1EF08D7B00A37A1F /* SaveImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveImageViewController.swift; sourceTree = "<group>"; };
 		D0ED3AD21EE06FCB0005B14C /* free-blur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "free-blur.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ED3AD51EE06FCC0005B14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0ED3AD71EE06FCC0005B14C /* EditImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -121,6 +123,7 @@
 				D05F070C1EE9932B00203DFD /* Circle.swift */,
 				D05F070E1EE9938E00203DFD /* GaussMat.swift */,
 				D05F07101EE9940100203DFD /* RGBAPixel.swift */,
+				D0A59CBB1EF08D7B00A37A1F /* SaveImageViewController.swift */,
 			);
 			path = "free-blur";
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				D038A2511EE36A5300D3514B /* BlurSelectionView.swift in Sources */,
 				D0ED3ADA1EE06FCC0005B14C /* SecondViewController.swift in Sources */,
 				D05F070F1EE9938E00203DFD /* GaussMat.swift in Sources */,
+				D0A59CBC1EF08D7B00A37A1F /* SaveImageViewController.swift in Sources */,
 				D038A2531EE59AC600D3514B /* CustomBlur.swift in Sources */,
 				D0ED3AD61EE06FCC0005B14C /* AppDelegate.swift in Sources */,
 				D0ED3AD81EE06FCC0005B14C /* EditImageViewController.swift in Sources */,
