@@ -16,8 +16,8 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     var blurredImage = UIImage()
     var faceGrids = [BlurSelectionView]()
     
+    @IBOutlet weak var blurNavItem: UINavigationItem!
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var lblSaved: UILabel!
     
     
@@ -28,53 +28,50 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         self.imgView.isUserInteractionEnabled = true
         self.imgView.frame = self.view.bounds
         
-        self.btnSave.isHidden = true
-        self.btnSave.addTarget(self, action: #selector(EditImageViewController.btnSave_TouchUpInside(_:)), for: .touchUpInside)
         self.lblSaved.isHidden = true
+        self.blurNavItem.title = "Blur Images"
+        if let leftButton = self.blurNavItem.leftBarButtonItem {
+            leftButton.target = self
+            leftButton.action = #selector(selectPhotoPressed)
+        }
+        if let rightButton = self.blurNavItem.rightBarButtonItem {
+            rightButton.target = self
+            rightButton.action = #selector(blurPhotoPressed)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "saveBlurredImage" {
+            let destView = segue.destination as! SaveImageViewController
+            destView.imageToSave = self.blurredImage
+        }
+        super.prepare(for: segue, sender: sender)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func btnClick(_ sender: Any) {
+    func selectPhotoPressed() {
         self.image.allowsEditing = true
         self.image.sourceType = .photoLibrary
         self.present(image, animated: true, completion: nil)
     }
     
-    @IBAction func btnProcess_TouchUpInside(_ sender: Any) {
+    func blurPhotoPressed() {
         var targets = [CGRect]()
         for target in self.faceGrids {
             if target.shouldBlurFace { targets.append(target.ciFaceCoords) }
         }
         
+        // TODO: make this async
         let blurImageResult = blurImage(in: self.curImageSelection, targets: targets, numPasses: 2)
         self.blurredImage = blurImageResult!
         self.imgView.image = self.blurredImage
         
         self.clearSubviews()
-        self.btnSave.isHidden = false
+        performSegue(withIdentifier: "saveBlurredImage", sender: nil)
     }
     
-    @IBAction func btnSave_TouchUpInside(_ sender: Any) {
-        UIImageWriteToSavedPhotosAlbum(self.blurredImage, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
-    
-    func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-        if let er = error {
-            let errorAlert = UIAlertController(title: "Error Saving Photo", message: er.localizedDescription, preferredStyle: .alert)
-            present(errorAlert, animated: true)
-        }
-        else {
-            self.lblSaved.isHidden = false
-            UIView.animate(withDuration: 0.65, animations: {
-                self.lblSaved.alpha = 0
-            }, completion: nil)
-            //self.lblSaved.isHidden = true
-            //self.lblSaved.alpha = 1.0*/
-        }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func clearSubviews() {
@@ -85,7 +82,6 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            self.btnSave.isHidden = true
             self.faceGrids.removeAll()
             self.curImageSelection = pickedImage
             self.imgView.contentMode = .scaleAspectFit
@@ -111,7 +107,7 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
             let ciImageSize = ciImage.extent.size
             var transform = CGAffineTransform(scaleX: 1, y: -1)
             transform = transform.translatedBy(x: 0, y: -ciImage.extent.size.height)
-                
+
             for face in faces as! [CIFaceFeature] {
                 var faceViewBounds = face.bounds.applying(transform)
                 let viewSize = imgView.bounds.size
