@@ -16,6 +16,18 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     var blurredImage = UIImage()
     var faceGrids = [BlurSelectionView]()
     
+    var canBlur: Bool {
+        get {
+            for faceGrid in faceGrids {
+                if faceGrid.shouldBlurFace {
+                    return true
+                }
+            }
+            return false
+        }
+    }
+    
+    @IBOutlet weak var blurButton: UIBarButtonItem!
     @IBOutlet weak var blurNavItem: UINavigationItem!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblSaved: UILabel!
@@ -30,14 +42,15 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         
         self.lblSaved.isHidden = true
         self.blurNavItem.title = "Blur Images"
+        
         if let leftButton = self.blurNavItem.leftBarButtonItem {
             leftButton.target = self
             leftButton.action = #selector(selectPhotoPressed)
         }
-        if let rightButton = self.blurNavItem.rightBarButtonItem {
-            rightButton.target = self
-            rightButton.action = #selector(blurPhotoPressed)
-        }
+        
+        self.blurButton.target = self
+        self.blurButton.action = #selector(blurPhotoPressed)
+        self.blurButton.isEnabled = self.canBlur
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,6 +113,10 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
 
+    func blurCountUpdated(_ sender: UITapGestureRecognizer) {
+        self.blurButton.isEnabled = self.canBlur
+    }
+    
     func findFaces(ciImage: CIImage) {
         let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
         let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: accuracy)
@@ -121,6 +138,9 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
                 faceViewBounds.origin.y += offsetY
                 
                 let faceBox = BlurSelectionView(frame: faceViewBounds, ciFaceCoords: face.bounds.applying(transform))
+                
+                let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.blurCountUpdated(_:)))
+                faceBox.addGestureRecognizer(gestureRecognizer)
                 
                 self.imgView.addSubview(faceBox)
                 self.faceGrids.append(faceBox)

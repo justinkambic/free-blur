@@ -42,6 +42,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Blur" id="b9z-8l-FLf"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="blurButton" destination="b9z-8l-FLf" id="QZN-gz-caH"/>
                         <outlet property="blurNavItem" destination="Ch2-pR-chv" id="dZd-HY-Wvm"/>
                         <outlet property="imgView" destination="Sz4-zY-a1w" id="5Ip-jS-pqx"/>
                         <outlet property="lblSaved" destination="gAc-8x-uF0" id="2Em-eo-u2R"/>
