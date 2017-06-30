@@ -12,6 +12,7 @@ import CoreImage
 class EditImageViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     let image = UIImagePickerController()
+    let blurSettings = BlurSettings()
     var curImageSelection = UIImage()
     var blurredImage = UIImage()
     var faceGrids = [BlurSelectionView]()
@@ -74,7 +75,7 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         }
         
         // TODO: make this async
-        let blurImageResult = blurImage(in: self.curImageSelection, targets: targets, numPasses: 2)
+        let blurImageResult = blurImage(in: self.curImageSelection, targets: targets, numPasses: blurSettings.getNumPasses(), diameter: blurSettings.getDiameter())
         self.blurredImage = blurImageResult!
         self.imgView.image = self.blurredImage
         
