@@ -86,6 +86,10 @@ class BlurSettings {
         guard diameter <= self.maxDiameter else {
             throw SettingsError.SettingValueOutsideAcceptedRange
         }
-        self.userDefaults.set(diameter, forKey: self.diameterKey)
+        if diameter % 2 == 0 {
+            self.userDefaults.set(diameter - 1, forKey: self.diameterKey)
+        } else {
+            self.userDefaults.set(diameter, forKey: self.diameterKey)
+        }
     }
 }
