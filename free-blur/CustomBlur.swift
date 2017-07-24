@@ -10,7 +10,7 @@ import CoreGraphics
 import CoreImage
 import UIKit
 
-func blurImage(in image: UIImage, targets: [CGRect], numPasses: UInt8) -> UIImage? {
+func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: Int) -> UIImage? {
     guard let inputCGImage = image.cgImage else {
         print("unable to get cgImage")
         return nil
@@ -36,9 +36,9 @@ func blurImage(in image: UIImage, targets: [CGRect], numPasses: UInt8) -> UIImag
     
     let pixelBuffer = buffer.bindMemory(to: RGBAPixel.self, capacity: width * height)
     
-    let blurMat = GaussMat(diameter: 3, weight: 50)
+    let blurMat = GaussMat(diameter: diameter, weight: 50)
 
-    var i : UInt8 = 1
+    var i = 1
     while i <= numPasses {
         i += 1
         for target in targets {

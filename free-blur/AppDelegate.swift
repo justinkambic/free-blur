@@ -18,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controlTint = UIColor(colorLiteralRed: 251/255.0, green: 126/255.0, blue: 16/255.0, alpha: 1.0)
         UITabBar.appearance().tintColor = controlTint
         UINavigationBar.appearance().tintColor = controlTint
+        
+        let blurSettings = BlurSettings()
+        do {
+            try blurSettings.setDefaults()
+        } catch {
+            return false
+        }
+        
         return true
     }
 
