@@ -33,7 +33,6 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblSaved: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,9 +76,7 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         // TODO: make this async
         let blurImageResult = blurImage(in: self.curImageSelection, targets: targets, numPasses: blurSettings.getNumPasses(), diameter: blurSettings.getDiameter())
         self.blurredImage = blurImageResult!
-        self.imgView.image = self.blurredImage
         
-        self.clearSubviews()
         performSegue(withIdentifier: "saveBlurredImage", sender: nil)
     }
     
