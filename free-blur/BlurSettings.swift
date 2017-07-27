@@ -31,7 +31,7 @@ class BlurSettings {
     }
     
     public var maxDiameter : Int {
-        return 13
+        return 15
     }
 
     public var minDiameter : Int {
