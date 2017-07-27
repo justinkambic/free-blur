@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SettingsViewController: UIViewController {
     let blurSettings = BlurSettings()
     
     @IBOutlet weak var diamval: UILabel!
