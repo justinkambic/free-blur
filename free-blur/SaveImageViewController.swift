@@ -15,8 +15,7 @@ class SaveImageViewController : UIViewController {
     
     @IBOutlet weak var imgViewToSave: UIImageView!
     @IBOutlet weak var saveImageNavBar: UINavigationItem!
-    
-    
+
     override func viewDidLoad() {
         if let saveButton = saveImageNavBar.rightBarButtonItem {
             saveButton.target = self
