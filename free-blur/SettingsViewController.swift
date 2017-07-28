@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var diameterSlider: UISlider!
     @IBOutlet weak var passSlider: UISlider!
     
+    @IBOutlet weak var shapeButtons: UISegmentedControl!
     @IBOutlet weak var passLabel: UILabel!
     var numPasses: Int = 0
     var diameter: Int = 0
@@ -24,15 +25,31 @@ class SettingsViewController: UIViewController {
         
         numPasses = self.blurSettings.getNumPasses()
         diameter = self.blurSettings.getDiameter()
+        let shape = self.blurSettings.getBlurShape()
+        let shapeSegment = shape == "circle" ? 0 : 1
         
         self.diameterSlider.setValue(Float(diameter), animated: false)
         self.passSlider.setValue(Float(numPasses), animated: false)
         
-        passSlider.addTarget(self, action: #selector(self.passesSliderChanged(_:)), for: .valueChanged)
-        diameterSlider.addTarget(self, action: #selector(self.diameterSl(_:)), for: .valueChanged)
+        self.passSlider.addTarget(self, action: #selector(self.passesSliderChanged(_:)), for: .valueChanged)
+        self.diameterSlider.addTarget(self, action: #selector(self.diameterSl(_:)), for: .valueChanged)
+        //self.shapeButtons.addTarget(self, action: #selector(self.shapeChoiceChanged(_:)), for: )
         
         self.setDiameterLabel(value: String(Int(self.diameterSlider.value)))
         self.setPassesLabel(value: String(Int(self.passSlider.value)))
+        self.shapeButtons.setEnabled(true, forSegmentAt: shapeSegment)
+    }
+    
+    @IBAction func segmentchanged(_ sender: Any) {
+        let shapeSelection = self.shapeButtons.selectedSegmentIndex
+        
+        let shape = shapeSelection == 0 ? "circle" : "square"
+        
+        do {
+            try self.blurSettings.setBlurShape(shape: shape)
+        } catch {
+            self.showErrorMessage()
+        }
     }
     
     func passesSliderChanged(_ sender: UISlider) {
