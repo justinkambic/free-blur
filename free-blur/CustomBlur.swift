@@ -10,7 +10,7 @@ import CoreGraphics
 import CoreImage
 import UIKit
 
-func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: Int) -> UIImage? {
+func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: Int, blurShape: String) -> UIImage? {
     guard let inputCGImage = image.cgImage else {
         print("unable to get cgImage")
         return nil
@@ -49,7 +49,7 @@ func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: I
 
                     let curPixel = pixelBuffer[offset]
                     
-                    if !blurRange.containsPixel(xp: column, yp: row) { continue }
+                    if blurShape == "circle" && !blurRange.containsPixel(xp: column, yp: row) { continue }
                     
                     var skipMat : [[Bool]] = Array(repeating: Array(repeating: Bool(), count: blurMat.matWidth), count: blurMat.matHeight)
                     var selectionMat : [[RGBAPixel]] = Array(repeating: Array(repeating: RGBAPixel(), count: blurMat.matWidth), count: blurMat.matHeight)

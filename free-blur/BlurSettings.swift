@@ -11,11 +11,13 @@ import UIKit
 
 enum SettingsError : Error {
     case SettingValueOutsideAcceptedRange
+    case ProvidedInvalidShapeValue
 }
 
 class BlurSettings {
     private let numPassesKey = "numPasses"
     private let diameterKey = "diameter"
+    private let blurShapeKey = "blurShape"
     private let userDefaults = UserDefaults.standard
     
     public var maxNumPasses : Int {
@@ -42,6 +44,10 @@ class BlurSettings {
         return 3
     }
     
+    public var blurShapeDefault : String {
+        return "circle"
+    }
+    
     func setDefaults() throws {
         if self.userDefaults.object(forKey: self.numPassesKey) == nil {
             try self.setNumPasses(numPasses: self.numPassesDefault)
@@ -50,6 +56,25 @@ class BlurSettings {
         if self.userDefaults.object(forKey: self.diameterKey) == nil {
             try self.setDiameter(diameter: self.diameterDefault)
         }
+        
+        if self.userDefaults.object(forKey: self.blurShapeKey) == nil {
+            try self.setBlurShape(shape: self.blurShapeDefault)
+        }
+    }
+    
+    func getBlurShape() -> String! {
+        let shape = userDefaults.string(forKey: self.blurShapeKey)
+        if shape != "circle" && shape != "square" {
+            return self.blurShapeDefault
+        }
+        return shape
+    }
+    
+    func setBlurShape(shape: String!) throws {
+        guard shape == "circle" || shape == "square" else {
+            throw SettingsError.ProvidedInvalidShapeValue
+        }
+        self.userDefaults.set(shape, forKey: self.blurShapeKey)
     }
     
     func getNumPasses() -> Int {

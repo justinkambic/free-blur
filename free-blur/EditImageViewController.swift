@@ -74,7 +74,14 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         }
         
         // TODO: make this async
-        let blurImageResult = blurImage(in: self.curImageSelection, targets: targets, numPasses: blurSettings.getNumPasses(), diameter: blurSettings.getDiameter())
+        let blurImageResult = blurImage(
+            in: self.curImageSelection,
+            targets: targets,
+            numPasses: blurSettings.getNumPasses(),
+            diameter: blurSettings.getDiameter(),
+            blurShape: self.blurSettings.getBlurShape()
+        )
+
         self.blurredImage = blurImageResult!
         
         performSegue(withIdentifier: "saveBlurredImage", sender: nil)
