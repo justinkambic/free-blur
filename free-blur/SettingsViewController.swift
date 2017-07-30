@@ -33,11 +33,10 @@ class SettingsViewController: UIViewController {
         
         self.passSlider.addTarget(self, action: #selector(self.passesSliderChanged(_:)), for: .valueChanged)
         self.diameterSlider.addTarget(self, action: #selector(self.diameterSl(_:)), for: .valueChanged)
-        //self.shapeButtons.addTarget(self, action: #selector(self.shapeChoiceChanged(_:)), for: )
         
         self.setDiameterLabel(value: String(Int(self.diameterSlider.value)))
         self.setPassesLabel(value: String(Int(self.passSlider.value)))
-        self.shapeButtons.setEnabled(true, forSegmentAt: shapeSegment)
+        self.shapeButtons.selectedSegmentIndex = shapeSegment
     }
     
     @IBAction func segmentchanged(_ sender: Any) {
