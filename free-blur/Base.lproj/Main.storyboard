@@ -179,7 +179,7 @@
             <objects>
                 <navigationController id="1kA-ti-kXE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Blur Images" image="blurTab" id="G3d-7g-gh5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o1g-kW-39n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o1g-kW-39n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -35,16 +35,14 @@ class SaveImageViewController : UIViewController {
     func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let er = error {
             let errorAlert = UIAlertController(title: "Error Saving Photo", message: er.localizedDescription, preferredStyle: .alert)
+            errorAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(errorAlert, animated: true)
         }
         else {
-            //self.lblSaved.isHidden = false
-            /*UIView.animate(withDuration: 0.65, animations: {
-                self.lblSaved.alpha = 0
-            }, completion: { (finished: Bool) in
-                self.lblSaved.isHidden = true
-                self.lblSaved.alpha = 1.0
-            })*/
+            let alert = UIAlertController(title: "Saved!", message: "Your blurred photo was saved.", preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(dismissAction)
+            present(alert, animated: true)
         }
     }
 }
