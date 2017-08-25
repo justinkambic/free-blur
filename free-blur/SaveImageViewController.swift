@@ -32,10 +32,6 @@ class SaveImageViewController : UIViewController {
         UIImageWriteToSavedPhotosAlbum(self.imageToSave, self, #selector(self.imageSaved), nil)
     }
     
-    func touchOutsideAlertView(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let er = error {
             let errorAlert = UIAlertController(title: "Error Saving Photo", message: er.localizedDescription, preferredStyle: .alert)
