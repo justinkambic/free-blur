@@ -31,16 +31,15 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var blurButton: UIBarButtonItem!
     @IBOutlet weak var blurNavItem: UINavigationItem!
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var lblSaved: UILabel!
-    
+    @IBOutlet weak var progressBar: BlurProgressBarView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.image.delegate = self
         self.imgView.isUserInteractionEnabled = true
         self.imgView.frame = self.view.bounds
-        
-        self.lblSaved.isHidden = true
+
         self.blurNavItem.title = "Blur Images"
         
         if let leftButton = self.blurNavItem.leftBarButtonItem {
@@ -52,7 +51,7 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         self.blurButton.action = #selector(blurPhotoPressed)
         self.blurButton.isEnabled = self.canBlur
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "saveBlurredImage" {
             let destView = segue.destination as! SaveImageViewController
@@ -73,18 +72,21 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
             if target.shouldBlurFace { targets.append(target.ciFaceCoords) }
         }
         
-        // TODO: make this async
-        let blurImageResult = blurImage(
-            in: self.curImageSelection,
-            targets: targets,
-            numPasses: blurSettings.getNumPasses(),
-            diameter: blurSettings.getDiameter(),
-            blurShape: self.blurSettings.getBlurShape()
-        )
-
-        self.blurredImage = blurImageResult!
-        
-        performSegue(withIdentifier: "saveBlurredImage", sender: nil)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let blurImageResult = blurImage(
+                in: self.curImageSelection,
+                targets: targets,
+                numPasses: self.blurSettings.getNumPasses(),
+                diameter: self.blurSettings.getDiameter(),
+                blurShape: self.blurSettings.getBlurShape(),
+                progressBar: self.progressBar
+            )
+            DispatchQueue.main.async {
+                self.blurredImage = blurImageResult!
+                
+                self.performSegue(withIdentifier: "saveBlurredImage", sender: nil)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

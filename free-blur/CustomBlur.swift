@@ -10,7 +10,7 @@ import CoreGraphics
 import CoreImage
 import UIKit
 
-func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: Int, blurShape: String) -> UIImage? {
+func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: Int, blurShape: String, progressBar: AsyncCounter) -> UIImage? {
     guard let inputCGImage = image.cgImage else {
         print("unable to get cgImage")
         return nil
@@ -37,7 +37,11 @@ func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: I
     let pixelBuffer = buffer.bindMemory(to: RGBAPixel.self, capacity: width * height)
     
     let blurMat = GaussMat(diameter: diameter, weight: 50)
-
+    
+    DispatchQueue.main.async {
+        progressBar.updateCounter(value: 50)
+    }
+    
     var i = 1
     while i <= numPasses {
         i += 1
