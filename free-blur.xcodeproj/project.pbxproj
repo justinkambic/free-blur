@@ -22,6 +22,8 @@
 		D0ED3AE21EE06FCC0005B14C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0ED3AE01EE06FCC0005B14C /* LaunchScreen.storyboard */; };
 		D0ED3AED1EE06FCC0005B14C /* free_blurTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AEC1EE06FCC0005B14C /* free_blurTests.swift */; };
 		D0ED3AF81EE06FCC0005B14C /* free_blurUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED3AF71EE06FCC0005B14C /* free_blurUITests.swift */; };
+		D0F560FE1F51075E00CA7C53 /* AsyncCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F560FD1F51075D00CA7C53 /* AsyncCounter.swift */; };
+		D0F561001F5108BF00CA7C53 /* BlurProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F560FF1F5108BF00CA7C53 /* BlurProgressBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		D0ED3AF31EE06FCC0005B14C /* free-blurUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "free-blurUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ED3AF71EE06FCC0005B14C /* free_blurUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = free_blurUITests.swift; sourceTree = "<group>"; };
 		D0ED3AF91EE06FCC0005B14C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0F560FD1F51075D00CA7C53 /* AsyncCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCounter.swift; sourceTree = "<group>"; };
+		D0F560FF1F5108BF00CA7C53 /* BlurProgressBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurProgressBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 		D0ED3AD41EE06FCB0005B14C /* free-blur */ = {
 			isa = PBXGroup;
 			children = (
+				D0F560FC1F51072800CA7C53 /* protocols */,
 				D0ED3AD51EE06FCC0005B14C /* AppDelegate.swift */,
 				D0ED3AD71EE06FCC0005B14C /* EditImageViewController.swift */,
 				D0ED3AD91EE06FCC0005B14C /* SettingsViewController.swift */,
@@ -127,6 +132,7 @@
 				D05F07101EE9940100203DFD /* RGBAPixel.swift */,
 				D0A59CBB1EF08D7B00A37A1F /* SaveImageViewController.swift */,
 				D080A1B91F06F69500200152 /* BlurSettings.swift */,
+				D0F560FF1F5108BF00CA7C53 /* BlurProgressBarView.swift */,
 			);
 			path = "free-blur";
 			sourceTree = "<group>";
@@ -147,6 +153,14 @@
 				D0ED3AF91EE06FCC0005B14C /* Info.plist */,
 			);
 			path = "free-blurUITests";
+			sourceTree = "<group>";
+		};
+		D0F560FC1F51072800CA7C53 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D0F560FD1F51075D00CA7C53 /* AsyncCounter.swift */,
+			);
+			name = protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,12 +300,14 @@
 				D05F07111EE9940100203DFD /* RGBAPixel.swift in Sources */,
 				D038A2511EE36A5300D3514B /* BlurSelectionView.swift in Sources */,
 				D0ED3ADA1EE06FCC0005B14C /* SettingsViewController.swift in Sources */,
+				D0F560FE1F51075E00CA7C53 /* AsyncCounter.swift in Sources */,
 				D05F070F1EE9938E00203DFD /* GaussMat.swift in Sources */,
 				D080A1BA1F06F69500200152 /* BlurSettings.swift in Sources */,
 				D0A59CBC1EF08D7B00A37A1F /* SaveImageViewController.swift in Sources */,
 				D038A2531EE59AC600D3514B /* CustomBlur.swift in Sources */,
 				D0ED3AD61EE06FCC0005B14C /* AppDelegate.swift in Sources */,
 				D0ED3AD81EE06FCC0005B14C /* EditImageViewController.swift in Sources */,
+				D0F561001F5108BF00CA7C53 /* BlurProgressBarView.swift in Sources */,
 				D05F070D1EE9932B00203DFD /* Circle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,20 +22,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sz4-zY-a1w">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sz4-zY-a1w">
+                                <rect key="frame" x="20" y="64" width="374" height="623"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAc-8x-uF0">
-                                <rect key="frame" x="160" y="150" width="47" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JqO-E3-fwn" customClass="BlurProgressBarView" customModule="free_blur" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="374" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.058823529411764705" green="0.027450980392156862" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.98431372549999996" green="0.4941176471" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Sz4-zY-a1w" secondAttribute="trailing" id="Nay-d2-5PK"/>
+                            <constraint firstItem="JqO-E3-fwn" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="40" id="Xia-vR-Om1"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="JqO-E3-fwn" secondAttribute="leading" id="ifL-mJ-m3O"/>
+                            <constraint firstItem="Sz4-zY-a1w" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="kIh-nB-nYM"/>
+                            <constraint firstItem="Sz4-zY-a1w" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="lob-PB-nuO"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Sz4-zY-a1w" secondAttribute="bottom" id="mSJ-he-cqm"/>
+                            <constraint firstItem="Sz4-zY-a1w" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="vm9-IU-DBb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JqO-E3-fwn" secondAttribute="trailing" id="wtx-7U-TMP"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Blur Images" image="blurTab" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" id="Ch2-pR-chv">
@@ -43,16 +48,17 @@
                         <barButtonItem key="rightBarButtonItem" title="Blur" id="b9z-8l-FLf"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addImageButton" destination="gnH-RW-dhX" id="DRe-sk-QPY"/>
                         <outlet property="blurButton" destination="b9z-8l-FLf" id="QZN-gz-caH"/>
                         <outlet property="blurNavItem" destination="Ch2-pR-chv" id="dZd-HY-Wvm"/>
                         <outlet property="imgView" destination="Sz4-zY-a1w" id="5Ip-jS-pqx"/>
-                        <outlet property="lblSaved" destination="gAc-8x-uF0" id="2Em-eo-u2R"/>
+                        <outlet property="progressBar" destination="JqO-E3-fwn" id="3UJ-cK-VxK"/>
                         <segue destination="27N-dZ-EqX" kind="show" identifier="saveBlurredImage" id="dq5-xj-Kge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850" y="-582"/>
+            <point key="canvasLocation" x="849.27536231884062" y="-582.06521739130437"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
@@ -179,7 +185,7 @@
             <objects>
                 <navigationController id="1kA-ti-kXE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Blur Images" image="blurTab" id="G3d-7g-gh5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o1g-kW-39n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o1g-kW-39n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -203,12 +209,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOC-lA-S00">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DOC-lA-S00">
+                                <rect key="frame" x="20" y="64" width="374" height="628"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.058823529411764705" green="0.027450980392156862" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="x2e-gW-yvR" firstAttribute="top" secondItem="DOC-lA-S00" secondAttribute="bottom" id="K35-K3-2x4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DOC-lA-S00" secondAttribute="trailing" id="fIe-rH-FWZ"/>
+                            <constraint firstItem="DOC-lA-S00" firstAttribute="leading" secondItem="hRW-2K-AM4" secondAttribute="leadingMargin" id="gzW-ku-SDg"/>
+                            <constraint firstItem="DOC-lA-S00" firstAttribute="top" secondItem="mX3-ha-uT8" secondAttribute="bottom" id="r2m-3P-iHd"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Save" id="J9o-Xr-pM1">
