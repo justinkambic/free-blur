@@ -40,7 +40,10 @@ class SaveImageViewController : UIViewController {
         }
         else {
             let alert = UIAlertController(title: "Saved!", message: "Your blurred photo was saved.", preferredStyle: .alert)
-            let dismissAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            let dismissAction = UIAlertAction(title: "Ok", style: .default, handler: {
+                (alert: UIAlertAction!) in self.navigationController?.popToRootViewController(animated: true)
+            })
+            
             alert.addAction(dismissAction)
             present(alert, animated: true)
         }
