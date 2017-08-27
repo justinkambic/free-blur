@@ -38,17 +38,30 @@ func blurImage(in image: UIImage, targets: [CGRect], numPasses: Int, diameter: I
     
     let blurMat = GaussMat(diameter: diameter, weight: 50)
     
-    DispatchQueue.main.async {
-        progressBar.updateCounter(value: 50)
+    var totalPixels = 0
+    for target in targets {
+        totalPixels += Int(target.height) * Int(target.width)
     }
+    totalPixels *= numPasses
     
     var i = 1
+    var numPixels = 0
     while i <= numPasses {
         i += 1
         for target in targets {
             let blurRange = Circle(container: target)
             for row in Int(target.minY) ..< Int(target.minY + target.height) {
                 for column in Int(target.minX) ..< Int(target.minX + target.width) {
+                    numPixels += 1
+                    if (numPixels % 100 == 0) {
+                        DispatchQueue.main.async {
+                            progressBar.updateCounter(value: Float(numPixels) / Float(totalPixels))
+                        }
+                    } else if (totalPixels - numPixels < 100) {
+                        DispatchQueue.main.async {
+                            progressBar.updateCounter(value: 100)
+                        }
+                    }
                     let offset = row * width + column
 
                     let curPixel = pixelBuffer[offset]

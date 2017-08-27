@@ -29,6 +29,7 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
     }
     
     @IBOutlet weak var blurButton: UIBarButtonItem!
+    @IBOutlet weak var addImageButton: UIBarButtonItem!
     @IBOutlet weak var blurNavItem: UINavigationItem!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var progressBar: BlurProgressBarView!
@@ -59,6 +60,11 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         }
         super.prepare(for: segue, sender: sender)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.blurButton.isEnabled = self.canBlur
+        super.viewWillAppear(animated)
+    }
 
     func selectPhotoPressed() {
         self.image.allowsEditing = true
@@ -71,7 +77,11 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
         for target in self.faceGrids {
             if target.shouldBlurFace { targets.append(target.ciFaceCoords) }
         }
-        
+
+        self.blurButton.isEnabled = false
+        self.progressBar.isHidden = false
+        self.addImageButton.isEnabled = false
+
         DispatchQueue.global(qos: .userInitiated).async {
             let blurImageResult = blurImage(
                 in: self.curImageSelection,
@@ -83,8 +93,11 @@ class EditImageViewController: UIViewController, UINavigationControllerDelegate,
             )
             DispatchQueue.main.async {
                 self.blurredImage = blurImageResult!
-                
+                self.blurButton.isEnabled = true
                 self.performSegue(withIdentifier: "saveBlurredImage", sender: nil)
+                self.progressBar.isHidden = true
+                self.progressBar.setProgress(0.0, animated: false)
+                self.addImageButton.isEnabled = true
             }
         }
     }

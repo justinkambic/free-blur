@@ -25,7 +25,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sz4-zY-a1w">
                                 <rect key="frame" x="20" y="64" width="374" height="623"/>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JqO-E3-fwn" customClass="BlurProgressBarView" customModule="free_blur" customModuleProvider="target">
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JqO-E3-fwn" customClass="BlurProgressBarView" customModule="free_blur" customModuleProvider="target">
                                 <rect key="frame" x="20" y="104" width="374" height="2"/>
                             </progressView>
                         </subviews>
@@ -48,6 +48,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Blur" id="b9z-8l-FLf"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addImageButton" destination="gnH-RW-dhX" id="DRe-sk-QPY"/>
                         <outlet property="blurButton" destination="b9z-8l-FLf" id="QZN-gz-caH"/>
                         <outlet property="blurNavItem" destination="Ch2-pR-chv" id="dZd-HY-Wvm"/>
                         <outlet property="imgView" destination="Sz4-zY-a1w" id="5Ip-jS-pqx"/>

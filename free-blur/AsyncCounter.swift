@@ -9,6 +9,6 @@
 import Foundation
 
 protocol AsyncCounter {
-    func updateCounter(value: Int)
+    func updateCounter(value: Float)
 }
 

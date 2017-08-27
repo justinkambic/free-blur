@@ -11,29 +11,16 @@ import UIKit
 
 class BlurProgressBarView : UIProgressView, AsyncCounter
 {
-    var counter: Int {
-        get {
-            return self.counter
-        }
-        set(newCounter) {
-            self.counter = newCounter
-            self.setProgress(self.progressValue, animated: self.animated)
-        }
-    }
-    
-    var progressValue: Float {
-        get {
-            return Float(self.counter) / 100.0
-        }
-    }
+    var progressValue: Float = 0.0
     
     var animated: Bool {
         get {
-            return self.progressValue != 0
+            return self.progressValue != 0.0
         }
     }
     
-    func updateCounter(value: Int) {
-        self.counter = value
+    func updateCounter(value: Float) {
+        self.progressValue = value
+        self.setProgress(self.progressValue, animated: self.animated)
     }
 }
